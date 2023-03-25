@@ -1,0 +1,31 @@
+@import '../veribles.scss';
+
+%type-button{
+    border: 2px solid rgba(148, 146, 146, 0.644);
+    border-radius: 5px;
+    font-size: 20px;
+    background-color: aliceblue;
+    width: max-content;
+    padding: 2px 5px;
+    cursor: pointer;
+
+    // disable select
+    -webkit-touch-callout: none; /* iOS Safari */
+    -webkit-user-select: none; /* Safari */
+     -khtml-user-select: none; /* Konqueror HTML */
+       -moz-user-select: none; /* Old versions of Firefox */
+        -ms-user-select: none; /* Internet Explorer/Edge */
+            user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+}
+
+%type-button:active{
+    @extend %background-active;
+    border: 2px solid rgba(134, 133, 133, 0.733);
+}
+
+
+
+.Button{
+    @extend %type-button;
+}

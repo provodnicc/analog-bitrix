@@ -1,0 +1,23 @@
+.SignForm{
+    width: max-content;
+    margin: 0 auto;
+    align-content: center;
+    background-color: rgb(233, 233, 233);
+    
+    border: 2px solid rgb(221, 221, 221);
+    border-radius: 5px;
+    padding: 5px;
+
+    >*{
+        margin: 10px;
+    }
+    &__title{
+        text-align: center;
+        // font-family: ;
+    }
+    .Button{
+        font-size: 18px;
+        margin: 0 auto;
+        margin-top: 20px;
+    }
+}

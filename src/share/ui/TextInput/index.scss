@@ -1,0 +1,20 @@
+@import "../Button/index.scss";
+@import "../veribles.scss";
+
+.Box{
+    @extend %type-button;
+
+    padding: 5px 10px;
+    .TextInput{
+        @extend %background;
+        @extend %Global-Font-Size;
+        outline: none;
+        border: none;
+        border-radius: 0;
+        padding: 2px 5px;
+        border-bottom: 1px solid gray;
+    }
+    .TextInput:active{
+        @extend %background-active;
+    }
+}
