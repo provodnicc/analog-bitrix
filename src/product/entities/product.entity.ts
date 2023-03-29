@@ -1,4 +1,6 @@
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Invoice } from "src/invoice/entities/invoice.entity";
+import { Order } from "src/order/entities/order.entity";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Product {
@@ -16,4 +18,10 @@ export class Product {
 
     @Column()
     code: number
+
+    @OneToMany(()=>Order, (order)=>order.product)
+    orders: Order[]
+
+    @OneToMany(()=>Invoice, (invoices)=>invoices.product)
+    invoices: Invoice[] 
 }

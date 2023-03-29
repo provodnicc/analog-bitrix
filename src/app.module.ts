@@ -3,6 +3,8 @@ import { ConfigModule } from '@nestjs/config';
 import { MulterModule } from '@nestjs/platform-express';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from './product/product.module';
+import { OrderModule } from './order/order.module';
+import { InvoiceModule } from './invoice/invoice.module';
 
 @Module({
   imports: [
@@ -24,7 +26,7 @@ import { ProductModule } from './product/product.module';
     }), 
     MulterModule.register({
       dest: './upload',
-    }), ProductModule
+    }), ProductModule, OrderModule, InvoiceModule
   ],
 })
 export class AppModule {}
