@@ -1,21 +1,61 @@
-import React from "react";
+import React, { useState } from "react";
 import { Button } from "../../share/ui/Button";
 import { TextInput } from "../../share/ui/TextInput";
 
 import './index.scss'
+import { IRowInfo, OrderFromRow } from "./OrderFormRow";
 
-export const OrderForm = () => {
+interface OrderFormProps{
+    title?: string
+}
+
+
+export const OrderForm: React.FC<OrderFormProps> = ({
+    title
+}) => {
+    let [countRows, setCountRows] = useState(0)
+    let [editedIndex, setEditedIndex] = useState(0)
+    
+    let [rowsDataComponent, setRowsDataComponent ] = useState<Array<any>>([
+        <OrderFromRow key={countRows} index={countRows} onChangeRow={(value)=>onChangeRowHandler(value, countRows)}/>
+    ])
+    const [tableData, setTableData] = useState<Array<IRowInfo>>(new Array<IRowInfo>())
+
     const onChangeHandler = (e: any) => {
 
     }
-
-    const onClickHandler = ()=> {
-
+    const createNewRow = ( index: number) => {
+        rowsDataComponent.push(<OrderFromRow key={countRows} index={index} onChangeRow={(value)=>onChangeRowHandler(value, index)}/>)
+        console.log(countRows)
+        setRowsDataComponent(rowsDataComponent)
     }
 
+    const onClickHandler = ()=> {
+        console.log(tableData)
+    }
+    
+    const onChangeRowHandler = (rowInfo: IRowInfo, index: number) => {
+        tableData.forEach((el, id)=>{
+            console.log(el)
+            if(el.id===index && index===id){
+                el=rowInfo
+            }
+        })
+        setTableData(tableData)
+        console.log(tableData)
+        if(rowInfo?.code && rowInfo.id==index){
+
+            console.log(rowInfo)
+            setCountRows(++countRows)
+            createNewRow(countRows)
+        }
+
+    }
+    
+    
     return <div className="OrderForm">
         <div className="OrderForm__title">
-            Создание Реализации
+            {title || 'Создание Реализации'}
         </div>
         <table className="table">
             <thead>
@@ -32,25 +72,15 @@ export const OrderForm = () => {
                     <th>
                         Розничная цена
                     </th>
+                    <th>
+                        Количество
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>
-                        <TextInput/>
-                    </td>
-                    <td>
-                        <TextInput placeholder="Отсканируйте штрихкод" onChange={onChangeHandler}/>
-                    </td>
-                    <td>
-                        <TextInput className="number" placeholder="0.00" onChange={onChangeHandler}/>
-                    </td>
-                    <td>
-                        <TextInput className="number" placeholder="0.00" onChange={onChangeHandler}/>
-                    </td>
-
-                </tr>
-
+                { rowsDataComponent.map((el)=>{
+                    return el
+                }) }
             </tbody>
         </table>
         <Button onClick={onClickHandler}>Продать</Button>
