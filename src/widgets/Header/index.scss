@@ -1,0 +1,23 @@
+.Header{
+    width: 90%; 
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-around;
+    gap: 4em;
+    .Header__link{
+        margin: 35px 0px 40px;
+        font-size: 23px;
+        border: 2px solid rgba(104, 110, 110, 0.452);
+        border-radius: 7px;
+        padding: 5px 20px;
+        background-color: rgba(255, 255, 255, 0.842);
+        text-decoration: none;
+        color: rgb(70, 67, 67);
+        transition: 0.3s;
+
+    }
+    .Header__link:active{
+        background-color: rgba(226, 226, 226, 0.671);
+        transition: 0.1s;
+    }
+}

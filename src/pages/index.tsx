@@ -22,15 +22,15 @@ export const router = createBrowserRouter([
         element: <SignUpPage/>
     },
     {
-        path: Routes.GET_PRODUC_LIST,
+        path: Routes.GET_PRODUCT_LIST,
         element: <GetProductListPage/>
     },
     {
-        path: Routes.CREATE_INVIOCE,
+        path: Routes.CREATE_INVOICE,
         element: <CreateInvoicePage/>
     },
     {
-        path: Routes.SALE_PRODUCS,
+        path: Routes.SALE_PRODUCTS,
         element: <SaleProductPage/>
     }
 ])

@@ -3,6 +3,7 @@ import './index.scss'
 interface ButtonProps{
     onClick: ()=>void
     children: React.ReactNode
+    className?: string
 }
 
 /**
@@ -12,10 +13,11 @@ interface ButtonProps{
 
 export const Button: React.FC<ButtonProps> = ({
     onClick,
-    children
+    children,
+    className
 })=>{
 
-    return <div className="Button">
+    return <div className={"Button "+ className}>
         <div onClick={onClick}>
             {children}
         </div>

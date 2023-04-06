@@ -3,7 +3,7 @@
 
 .Box{
     @extend %type-button;
-
+    width: 200px;
     padding: 5px 10px;
     .TextInput{
         @extend %background;
@@ -13,6 +13,8 @@
         border-radius: 0;
         padding: 2px 5px;
         border-bottom: 1px solid gray;
+        box-sizing: border-box;
+        width: 200px;
     }
     .TextInput:active{
         @extend %background-active;
