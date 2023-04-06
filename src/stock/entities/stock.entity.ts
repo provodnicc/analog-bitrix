@@ -2,17 +2,17 @@ import { Product } from "src/product/entities/product.entity";
 import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
-export class Order {
+export class Stock {
+
     @PrimaryGeneratedColumn()
     id: number
 
     @Column()
-    count: number
+    name: string
 
     @Column()
-    date: Date
+    count: number
 
-    @ManyToOne(()=>Product, (product)=>product.orders)
+    @ManyToOne(()=>Product, (product)=>product.stocks)
     product: Product
-
 }

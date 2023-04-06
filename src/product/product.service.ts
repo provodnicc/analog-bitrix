@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 import { CreateProductDto } from './dto/create-product.dto';
@@ -24,6 +24,9 @@ export class ProductService {
 
   async findOneByCode(code: number){
     const product = await this.productRepo.findOneBy({code: code})
+    if(!product){
+      throw new HttpException('на найдено', HttpStatus.BAD_REQUEST)
+    }
     return product
   }
 

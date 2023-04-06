@@ -9,7 +9,9 @@ export class Invoice {
 
     @Column()
     count: number
-
+    
+    @Column()
+    date: Date
 
     @ManyToOne(()=>Product, (product)=>product.invoices)
     product: Product

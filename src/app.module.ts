@@ -5,6 +5,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ProductModule } from './product/product.module';
 import { OrderModule } from './order/order.module';
 import { InvoiceModule } from './invoice/invoice.module';
+import { StockModule } from './stock/stock.module';
 
 @Module({
   imports: [
@@ -26,7 +27,7 @@ import { InvoiceModule } from './invoice/invoice.module';
     }), 
     MulterModule.register({
       dest: './upload',
-    }), ProductModule, OrderModule, InvoiceModule
+    }), ProductModule, OrderModule, InvoiceModule, StockModule
   ],
 })
 export class AppModule {}

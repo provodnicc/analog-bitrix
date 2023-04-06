@@ -15,9 +15,17 @@ export class OrderService {
     private productService: ProductService
   ){}
 
-  async create(createOrderDto: CreateOrderDto) {
-    const product = await this.productService.findOne(createOrderDto.product_id)
-    return await this.orderRepo.save(createOrderDto)
+  async create(createOrderDto: Array<CreateOrderDto>) {
+    
+    for(let orderDto of createOrderDto){
+      const product = await this.productService.findOne(orderDto.product_id)
+      const order = this.orderRepo.create(orderDto)
+      order.product = product
+      order.date = new Date()
+      await this.orderRepo.save(createOrderDto)
+    }
+    
+    return 
   }
 
   async findAll() {

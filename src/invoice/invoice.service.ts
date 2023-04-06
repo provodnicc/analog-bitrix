@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { HttpCode, HttpException, HttpStatus, Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { ProductService } from 'src/product/product.service';
 import { Repository } from 'typeorm';
@@ -15,12 +15,19 @@ export class InvoiceService {
     private productService: ProductService
   ){}
 
-  async create(createInvoiceDto: CreateInvoiceDto) {
-    const product = await this.productService.findOne(createInvoiceDto.product_id)
-    const invoice = this.invoiceRepo.create()
-    invoice.product = product
-    invoice.count = createInvoiceDto.count
-    return await this.invoiceRepo.save(invoice)
+  async create(createInvoiceDto: Array<CreateInvoiceDto>) {
+
+    for(let invoiceDto of createInvoiceDto){
+      let product = await this.productService.findOne(invoiceDto.product_id)
+      if(!product){
+        throw new HttpException('product undefined', HttpStatus.BAD_REQUEST)
+      }
+      const invoice = this.invoiceRepo.create(invoiceDto)
+      invoice.product = product
+      invoice.date = new Date()  
+      await this.invoiceRepo.save(invoice)
+    }
+    return 
   }
 
   async findAll() {

@@ -3,4 +3,5 @@ export class CreateProductDto {
     stock_price: number
     price: number
     code: number
+    min_count?: number
 }
